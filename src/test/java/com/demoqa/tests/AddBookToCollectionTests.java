@@ -57,7 +57,7 @@ public class AddBookToCollectionTests extends TestBase {
                 .spec(createdResponseSpec)
                 .extract().response());
 
-        open("/favicon.ico");
+        open("/images/Toolsqa.jpg");
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
         getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));

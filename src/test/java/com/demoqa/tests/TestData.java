@@ -1,6 +1,6 @@
 package com.demoqa.tests;
 
 public class TestData {
-    public static String login = "testtestov31",
-    password = "Testtestov31_%";
+    public static String login = "timsay",
+    password = "Timsay123_%";
 }
