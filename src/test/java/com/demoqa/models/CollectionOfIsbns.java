@@ -1,10 +1,13 @@
 package com.demoqa.models;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@AllArgsConstructor
 public class CollectionOfIsbns {
-    String isbn;
+    public CollectionOfIsbns(String isbn) {
+        this.isbn = isbn;
+    }
+    private String isbn;
 }

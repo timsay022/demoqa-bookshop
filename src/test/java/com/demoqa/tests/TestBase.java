@@ -1,11 +1,10 @@
 package com.demoqa.tests;
 
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.*;
 import static io.restassured.RestAssured.baseURI;
 
 public class TestBase {
@@ -20,6 +19,8 @@ public class TestBase {
 
     @AfterEach
     void shutDown() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
         closeWebDriver();
     }
 }

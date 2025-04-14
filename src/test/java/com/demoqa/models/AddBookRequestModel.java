@@ -1,11 +1,13 @@
 package com.demoqa.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class AddBookRequestModel {
     String userId;
-    CollectionOfIsbns collectionOfIsbns;
+    List<CollectionOfIsbns> collectionOfIsbns;
 }
