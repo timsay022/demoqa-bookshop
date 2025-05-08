@@ -1,7 +1,7 @@
 package com.demoqa.tests;
 
-import com.demoqa.api.AuthorizationApi;
-import com.demoqa.api.BooksApi;
+import com.demoqa.api.AuthorizationApiSteps;
+import com.demoqa.api.BooksApiSteps;
 import com.demoqa.helpers.WithLogin;
 import com.demoqa.models.LoginResponseModel;
 import org.junit.jupiter.api.Test;
@@ -10,16 +10,16 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.demoqa.tests.TestData.login;
+import static com.demoqa.api.AuthorizationApiSteps.config;
 
 public class AddBookToCollectionTests extends TestBase {
-    BooksApi booksApi = new BooksApi();
+    BooksApiSteps booksApi = new BooksApiSteps();
 
     @Test
     @WithLogin
     void addBookToCollectionTest() {
 
-        LoginResponseModel authResponse = new AuthorizationApi().login();
+        LoginResponseModel authResponse = new AuthorizationApiSteps().login();
 
         booksApi.deleteAllBooksFromCollection(authResponse);
 
@@ -28,7 +28,7 @@ public class AddBookToCollectionTests extends TestBase {
         booksApi.addBook(authResponse.getToken(), isbn, authResponse.getUserId());
 
         open("/profile");
-        $("#userName-value").shouldHave(text(login));
+        $("#userName-value").shouldHave(text(config.login()));
         $("[id='see-book-"+title+"']").shouldBe(visible);
 
     }

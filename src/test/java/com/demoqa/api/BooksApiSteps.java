@@ -12,7 +12,7 @@ import java.util.List;
 import static com.demoqa.spec.MainSpec.*;
 import static io.restassured.RestAssured.given;
 
-public class BooksApi {
+public class BooksApiSteps {
 
     @Step("Удалить все книги из коллекции пользователя")
     public void deleteAllBooksFromCollection(LoginResponseModel authResponse) {

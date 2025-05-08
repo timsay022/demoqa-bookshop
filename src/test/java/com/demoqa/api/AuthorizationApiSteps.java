@@ -1,22 +1,22 @@
 package com.demoqa.api;
 
+import com.demoqa.config.AuthConfig;
 import com.demoqa.models.LoginRequestModel;
 import com.demoqa.models.LoginResponseModel;
 import io.qameta.allure.Step;
+import org.aeonbits.owner.ConfigFactory;
 
 import static com.demoqa.spec.MainSpec.mainRequestSpec;
 import static com.demoqa.spec.MainSpec.mainResponseSpec;
-import static com.demoqa.tests.TestData.login;
-import static com.demoqa.tests.TestData.password;
 import static io.restassured.RestAssured.given;
 
-public class AuthorizationApi {
+public class AuthorizationApiSteps {
+
+    public static final AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
 
     @Step("Авторизация через API")
     public LoginResponseModel login() {
-        LoginRequestModel userLogin = new LoginRequestModel();
-        userLogin.setUserName(login);
-        userLogin.setPassword(password);
+        LoginRequestModel userLogin = new LoginRequestModel(config.login(), config.password());
 
         return
                 given(mainRequestSpec)

@@ -1,20 +1,22 @@
 package com.demoqa.tests;
 
+import com.demoqa.config.ConfigReader;
+import com.demoqa.config.WebConfig;
+import com.demoqa.config.WebDriverConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
-import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
-import static io.restassured.RestAssured.baseURI;
 
 public class TestBase {
 
+    private static final WebConfig webConfig = ConfigReader.Instance.read();
+
+
     @BeforeAll
     static void setUp() {
-        baseURI = "https://demoqa.com";
-        baseUrl = "https://demoqa.com";
-        pageLoadStrategy = "eager";
-        browserSize = "1920x1080";
+        WebDriverConfig webDriverConfig = new WebDriverConfig(webConfig);
+        webDriverConfig.webConfig();
     }
 
     @AfterEach

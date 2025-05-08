@@ -1,6 +1,6 @@
 package com.demoqa.helpers;
 
-import com.demoqa.api.AuthorizationApi;
+import com.demoqa.api.AuthorizationApiSteps;
 import com.demoqa.models.LoginResponseModel;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -14,7 +14,7 @@ public class LoginExtension implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
 
         open("/images/Toolsqa.jpg");
-        LoginResponseModel authResponse = new AuthorizationApi().login();
+        LoginResponseModel authResponse = new AuthorizationApiSteps().login();
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
         getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));

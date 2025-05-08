@@ -28,14 +28,15 @@ allure {
 dependencies {
     testImplementation(
             "com.codeborne:selenide:7.6.0",
-            "org.seleniumhq.selenium:selenium-devtools-v131:4.27.0",
+            "io.github.bonigarcia:webdrivermanager:6.0.1",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.rest-assured:rest-assured:$restAssuredVersion",
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "org.junit.jupiter:junit-jupiter:5.10.0",
             "org.slf4j:slf4j-simple:2.0.7",
-            "org.assertj:assertj-core:3.24.2"
+            "org.assertj:assertj-core:3.24.2",
+            "org.aeonbits.owner:owner:1.0.4"
     )
 }
 

@@ -1,7 +1,7 @@
 package com.demoqa.tests;
 
-import com.demoqa.api.AuthorizationApi;
-import com.demoqa.api.BooksApi;
+import com.demoqa.api.AuthorizationApiSteps;
+import com.demoqa.api.BooksApiSteps;
 import com.demoqa.helpers.WithLogin;
 import com.demoqa.models.LoginResponseModel;
 import com.demoqa.models.UserBooksResponseModel;
@@ -9,22 +9,22 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static com.demoqa.api.AuthorizationApiSteps.config;
 import static com.demoqa.spec.MainSpec.mainRequestSpec;
 import static com.demoqa.spec.MainSpec.mainResponseSpec;
-import static com.demoqa.tests.TestData.login;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeleteBookFromCollectionTest extends TestBase{
 
-    BooksApi booksApi = new BooksApi();
+    BooksApiSteps booksApi = new BooksApiSteps();
 
     @Test
     @WithLogin
     void deleteBookFromCollectionTest() {
 
-        LoginResponseModel authResponse = new AuthorizationApi().login();
+        LoginResponseModel authResponse = new AuthorizationApiSteps().login();
 
         booksApi.deleteAllBooksFromCollection(authResponse);
 
@@ -33,7 +33,7 @@ public class DeleteBookFromCollectionTest extends TestBase{
 
         step("Открыть список книг пользователя", ()-> {
             open("/profile");
-            $("#userName-value").shouldHave(text(login));
+            $("#userName-value").shouldHave(text(config.login()));
         });
 
         step("Удалить книгу из библиотеки", ()-> {
