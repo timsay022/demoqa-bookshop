@@ -2,6 +2,7 @@ package com.demoqa.config;
 
 import com.codeborne.selenide.Configuration;
 import io.restassured.RestAssured;
+import org.aeonbits.owner.ConfigFactory;
 
 public class WebDriverConfig {
     private final WebConfig webConfig;
