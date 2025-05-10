@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.demoqa.api.AuthorizationApiSteps.config;
+import static com.demoqa.spec.MainSpec.getResponseSpec;
 import static com.demoqa.spec.MainSpec.mainRequestSpec;
-import static com.demoqa.spec.MainSpec.mainResponseSpec;
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,7 +50,7 @@ public class DeleteBookFromCollectionTest extends TestBase{
                     .when()
                     .get("/Account/v1/User/" + authResponse.getUserId())
                     .then()
-                    .spec(mainResponseSpec)
+                    .spec(getResponseSpec(get().statusCode()))
                     .extract().as(UserBooksResponseModel.class);
 
             assertThat(response.getBooks()).isEmpty();

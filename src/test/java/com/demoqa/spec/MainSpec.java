@@ -15,10 +15,12 @@ public class MainSpec {
             .contentType(JSON)
             .log().all();
 
-    public static ResponseSpecification mainResponseSpec = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(ALL)
-            .build();
+    public static ResponseSpecification getResponseSpec (int statusCode) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .log(ALL)
+                .build();
+    }
 
     public static ResponseSpecification noContentResponseSpec = new ResponseSpecBuilder()
             .expectStatusCode(204)

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.demoqa.spec.MainSpec.*;
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class BooksApiSteps {
@@ -22,7 +23,7 @@ public class BooksApiSteps {
                 .when()
                 .delete("/BookStore/v1/Books")
                 .then()
-                .spec(noContentResponseSpec);
+                .spec(getResponseSpec(204));
     }
 
     @Step("Добавить книгу в коллекцию пользователя")
@@ -42,7 +43,7 @@ public class BooksApiSteps {
                 .when()
                 .post("/BookStore/v1/Books")
                 .then()
-                .spec(createdResponseSpec)
+                .spec(getResponseSpec(201))
                 .extract().as(AddBookRequestModel.class);
     }
 
@@ -54,7 +55,7 @@ public class BooksApiSteps {
                 .when()
                 .get("/Account/v1/User/" + userId)
                 .then()
-                .spec(mainResponseSpec)
+                .spec(getResponseSpec(200))
                 .extract().as(UserBooksResponseModel.class);
     }
 }

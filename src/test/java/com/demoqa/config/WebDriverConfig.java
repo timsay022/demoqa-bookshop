@@ -12,6 +12,7 @@ public class WebDriverConfig {
     }
 
     public void webConfig() {
+
         Configuration.baseUrl = webConfig.getBaseUrl();
         RestAssured.baseURI = webConfig.getBaseUrl();
         Configuration.browser = webConfig.getBrowserName();

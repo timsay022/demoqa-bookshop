@@ -6,8 +6,7 @@ import com.demoqa.models.LoginResponseModel;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 
-import static com.demoqa.spec.MainSpec.mainRequestSpec;
-import static com.demoqa.spec.MainSpec.mainResponseSpec;
+import static com.demoqa.spec.MainSpec.*;
 import static io.restassured.RestAssured.given;
 
 public class AuthorizationApiSteps {
@@ -26,7 +25,7 @@ public class AuthorizationApiSteps {
                         .post("/Account/v1/Login")
 
                         .then()
-                        .spec(mainResponseSpec)
+                        .spec(getResponseSpec(200))
                         .extract().as(LoginResponseModel.class);
     }
 }
